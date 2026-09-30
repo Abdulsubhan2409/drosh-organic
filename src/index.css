@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 42 12% 88%;
+    --foreground: 28 25% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 28 25% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 28 25% 10%;
+    --primary: 92 16% 36%;
+    --primary-foreground: 42 12% 92%;
+    --secondary: 42 20% 93%;
+    --secondary-foreground: 28 25% 10%;
+    --muted: 42 20% 93%;
+    --muted-foreground: 28 10% 40%;
+    --accent: 18 86% 41%;
+    --accent-foreground: 42 12% 94%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 40 33% 99%;
+    --border: 42 16% 84%;
+    --input: 42 16% 84%;
+    --ring: 18 86% 41%;
+    --radius: 0.25rem;
+    --font-heading: 'Cormorant Garamond', ui-serif, Georgia, serif;
+    --font-body: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .dark {
+    --background: 28 20% 8%;
+    --foreground: 42 15% 92%;
+    --card: 28 15% 12%;
+    --card-foreground: 42 15% 92%;
+    --popover: 28 15% 12%;
+    --popover-foreground: 42 15% 92%;
+    --primary: 18 80% 55%;
+    --primary-foreground: 28 20% 8%;
+    --secondary: 28 10% 18%;
+    --secondary-foreground: 42 15% 92%;
+    --muted: 28 10% 16%;
+    --muted-foreground: 40 10% 65%;
+    --accent: 18 80% 55%;
+    --accent-foreground: 28 20% 8%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 40 33% 99%;
+    --border: 28 10% 22%;
+    --input: 28 10% 22%;
+    --ring: 18 80% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-heading;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: hsl(var(--accent));
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+
+  .text-balance { text-wrap: balance; }
+
+  .gold-line {
+    background: linear-gradient(90deg, transparent, hsl(var(--accent)), transparent);
+  }
+
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid hsl(var(--accent));
+    outline-offset: 4px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
